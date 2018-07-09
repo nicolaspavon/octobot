@@ -1,0 +1,1322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--[if !mso]><!-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid Hybrid Template, Modified</title>
+    <style>
+
+/* ======================================== */
+/*   GLOBAL STYLES
+/* ======================================== */
+
+body {
+    Margin: 0;
+    padding: 0;
+
+    /* This is to avoid any situations where the content doesnâ€™t take up
+    the full width of the viewport on mobile: */
+    min-width: 100%;
+
+    /* It's always a good idea to set your background colour, even if
+    itâ€™s pure white, to avoid background colour glitches in Outlook
+    or Lotus Notes: */
+    background-color: #e0e8eb;
+}
+
+/*  To take the place of the cellpadding and cellspacing HTML attributes: */
+table {
+    border-spacing: 0;
+    font-family: sans-serif;
+    color: #333333;
+}
+td {
+    padding: 0;
+}
+
+
+img {
+    border: 0;
+}
+
+.wrapper {
+    width: 100%;
+
+    /* to ensure our centered content will actually be centered in Yahoo mail: */
+    table-layout: fixed;
+
+    /* to stop text resizing in a weird way on Windows Phones and iOS: */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+
+}
+
+/* to contain everything in Apple Mail 6 (and below) and Outlook 2011: */
+.webkit {
+    max-width: 600px;
+}
+
+/* In conjunction with our two meta tags in the head, this will ensure everything
+looks right on Windows Phones: */
+@-ms-viewport {
+    width: device-width;
+}
+
+
+
+/* =================================================================== */
+/*   OUTER TABLE
+/*   The key outer building block (for every client except Outlook)
+/* =================================================================== */
+
+
+.outer {
+    /* To center the outer table in Yahoo in Chrome. (Though this use of margin is for Yahooâ€™s sake Margin is capitalized so that Outlook.com wonâ€™t strip it out â€“ a neat little hack thanks to Wiktor- https://www.campaignmonitor.com/blog/post/3921/outlook.com-drops-margin-and-float-support-entirely */
+    Margin: 0 auto;
+
+    /* For a quick and easy buffer on mobile, without having to fiddle around with padding or media queries, change the width of your table from 100% to 95%. */
+    width: 100%;
+    /*width: 95%;*/
+
+    /* We want this outer table to be 100% wide on small screens but on larger
+    screens we only want it to be a maximum of 600px wide. */
+    max-width: 600px;
+}
+
+
+
+/* =================================================================== */
+/*   FULL WIDTH IMAGES
+/* =================================================================== */
+
+
+/* !!! IMPORTANT NOTE ABOUT IMAGES !!! */
+/* We must insert images at the correct physical pixel size, unless itâ€™s an icon smaller than 100px wide.
+
+This is because Outlook 2007, 2010 and 2013 will not scale images up or down from their physical dimensions unless you set an explicit pixel width on the image. If you were to place a 1200px wide image in a 600px wide cell and set its width to 100%, Outlook would display that image at 1200px wide. Therefore if you have a 600px wide cell (on desktop), you need to use a 600px wide image. */
+
+.full-width-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* =================================================================== */
+/*   MORE LAYOUT STYLES
+/* =================================================================== */
+
+.module {
+    background: #ffffff;
+/*    padding-top: 20px;
+    padding-bottom: 20px;*/
+}
+
+.full-width {
+    width: 100%;
+}
+
+.centered {
+    text-align: center;
+}
+
+.inner {
+    padding: 20px;
+}
+
+.margin-bottom-10 {
+    Margin-bottom: 10px;
+}
+
+.margin-top-10 {
+    Margin-top: 10px;
+}
+
+
+/* =================================================================== */
+/*   TEXT STYLES
+/* =================================================================== */
+
+/* CSS for <p> elements can actually be managed them easily because of the capital-M Margin hack mentioned earlier */
+p {
+    Margin: 0;
+}
+a {
+    color: #0099CC;
+    text-decoration: underline;
+}
+
+/* <p class="h1"> is used instead of <h1> because Outlook.com has some h1, h2 and h3 styles that always override your styling. */
+
+.text-h1 {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 18px;
+    color: #444444;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.text-h2 {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 16px;
+    color: #444444;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.text-regular {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 14px;
+    color: #444444;
+    line-height: 20px;
+}
+
+.text-small {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 10px;
+    color: #999999;
+}
+
+/* =================================================================== */
+/*   BUTTON
+/* =================================================================== */
+
+.button-wrap {
+    background-color:#0099CC;
+    border-top-left-radius:4px;
+    border-bottom-left-radius:4px;
+    border-top-right-radius:4px;
+    border-bottom-right-radius:4px;
+    background-clip: padding-box;
+    font-size:11px;
+    font-family:Helvetica, arial, sans-serif;
+    text-align:center;
+    color:#ffffff;
+    font-weight: 300;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:2px;
+}
+
+.button {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.button a {
+    color: #ffffff;
+    text-align:center;
+    text-decoration: none;
+}
+
+/* =================================================================== */
+/*   SINGLE-COLUMN LAYOUT
+/* =================================================================== */
+
+.one-column .contents {
+    text-align: left;
+}
+
+.one-column p {
+     font-size: 14px;
+    /* Margin-bottom: 10px; */
+}
+
+/* =================================================================== */
+/*   2-COLUMN LAYOUT
+/* =================================================================== */
+
+/* The way we are going to get two columns to float side by side on desktop, but stack in the centre on mobile, is by using a combination of 'text-align: center' and 'display: inline-block.'
+
+/* All inline and inline-block elements obey the text-align property. Therefore, if we wrap our tables in a div that is set to inline-block, we can very easily set their alignment when they stack by setting the text-align property on their container. You can choose from left, center or right text alignment, and your inline-block divs will obey. */
+
+/* You can indeed simply set the table itself to be 'display: inline-block,'' but only if you arenâ€™t going to be nesting any more tables inside. Things can start behaving weirdly if you nest tables inside inline-block tables, so if you need to nest, *** always ensure the inline-block container is a div. *** */
+
+.two-column {
+    /* Our chosen alignment, but you can choose from left, center or right */
+    text-align: center;
+
+    /* To get rid of any gaps between our columns inside this cell: */
+    font-size: 0;
+}
+
+/* This element acts as our COLUMN */
+.two-column .column {
+
+    /* Weâ€™re using a width of 100% up to a max-width of 300px so that this particular column will be 100% wide on viewports that are smaller than 300px wide. */
+    width: 100%;
+    max-width: 300px;
+
+    /* 'inline-block' is necessary for the vertical-align property to be obeyed */
+    display: inline-block;
+
+    /* ------------------ */
+    /* VERTICAL ALIGNMENT */
+    /* ------------------ */
+    vertical-align: top;
+
+    /* You can set your vertical-align to whatever you like: top, center or bottom. Setting vertical-align to top means that each column acts as though it is a table cell using the HTML property valign="top", while setting it to middle is as though it has valign="middle". */
+
+    /* Note that you can have many rows of these divs within the same cell and the vertical alignment will always dictate the vertical alignment on a row-by-row basis. Itâ€™s pretty nifty! */
+
+    /* Also ensure that whatever you choose here matches the valign that youâ€™ve set on your Outlook conditional table because Outlook doesnâ€™t support vertical-align. If youâ€™re having a mismatch with alignment in Outlook, forgetting to set the valign on the conditional tables is usually the culprit.*/
+    /* ------------------ */
+}
+
+.contents {
+    width: 100%;
+}
+
+.two-column .contents {
+    font-size: 14px;
+    text-align: left;
+}
+.two-column img {
+    width: 100%;
+    height: auto;
+}
+.two-column .text-regular {
+    /*padding-top: 10px;*/
+}
+
+/* =================================================================== */
+/*   3-COLUMN LAYOUT
+/* =================================================================== */
+
+
+.three-column {
+
+    /* We are going to be using 'text-align: center' so that our column stacks in the center,
+    but you can also always use left or right text alignment. */
+    text-align: center;
+    font-size: 0;
+}
+.three-column .column {
+    width: 100%;
+    max-width: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+.three-column .contents {
+    font-size: 14px;
+    text-align: center;
+}
+.three-column img {
+    width: 100%;
+    height: auto;
+}
+.three-column .text-regular {
+    /*padding-top: 10px;*/
+}
+
+/* =================================================================== */
+/*   LAYOUT MODULE WITH SIDEBAR (ICON) on left / MAIN CONTENT on right
+/* =================================================================== */
+
+.left-sidebar,
+.right-sidebar {
+    text-align: center;
+    font-size: 0;
+}
+
+.left-sidebar .column,
+.right-sidebar .column {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.left-sidebar .left,
+.right-sidebar .left {
+    max-width: 220px;
+}
+
+.left-sidebar .right,
+.right-sidebar .right {
+    max-width: 380px;
+}
+
+.left-sidebar .contents,
+.right-sidebar .contents {
+    font-size: 14px;
+    text-align: left;
+}
+
+
+/* =================================================================== */
+/*  MEDIA QUERIES FOR CLIENTS THAT SUPPORT THEM
+/*  (Progressive Enhancement)
+/* =================================================================== */
+
+
+/* Firstly, weâ€™ll make all of our columns appear at 100% the width of the viewport for anything up to 400px. Weâ€™ll also limit our three-column images to 50% wide so that they donâ€™t blow up too large. All we have to do is reset the max-width of these columns because, as youâ€™ll recall, they all already have a width of 100% and itâ€™s just the max-width that is restricting them. */
+
+@media screen and (max-width: 400px) {
+    .two-column .column,
+    .three-column .column {
+        max-width: 100% !important;
+    }
+    .three-column img {
+        max-width: 50% !important;
+    }
+}
+
+/* Then, between 401px and 600px wide, weâ€™ll add the following to make the two- and three-column layouts appear as they would on desktop, but shrunk down to fit. */
+
+@media screen and (min-width: 401px) and (max-width: 620px) {
+    .three-column .column {
+        max-width: 33% !important;
+    }
+    .two-column .column {
+        max-width: 50% !important;
+    }
+}
+
+
+/* CSS Utility Classes */
+
+.no-hover-state:hover {
+    cursor: default;
+}
+
+/* ----------------- */
+/* block or inline   */
+/* ----------------- */
+
+.display-block {
+    display: block;
+}
+
+.display-inline {
+    display: inline;
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+
+/* ----------------- */
+/* vertical alignment */
+/* ----------------- */
+
+.vertical-align-top {
+    vertical-align: top
+}
+
+.vertical-align-middle {
+    vertical-align: middle
+}
+
+.vertical-align-bottom {
+    vertical-align: bottom
+}
+
+
+/* ----------------- */
+/* text alignment    */
+/* ----------------- */
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ----------------- */
+/* padding           */
+/* ----------------- */
+
+.padding-none {
+    padding: 0px 0px 0px 0px;
+}
+
+.padding-top-2 {
+    padding-top: 2px;
+}
+
+.padding-top-5 {
+    padding-top: 5px;
+}
+
+.padding-top-10 {
+    padding-top: 10px;
+}
+
+.padding-top-15 {
+    padding-top: 15px;
+}
+
+.padding-bottom-2 {
+    padding-bottom: 2px;
+}
+
+.padding-bottom-5 {
+    padding-bottom: 5px;
+}
+
+.padding-bottom-10 {
+    padding-bottom: 10px;
+}
+
+.padding-bottom-15 {
+    padding-bottom: 15px;
+}
+
+/* ----------------- */
+/* margin            */
+/* ----------------- */
+
+.margin-none {
+    margin: 0px 0px 0px 0px;
+}
+
+.margin-top-2 {
+    margin-top: 2px;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+
+/* ------------------- */
+/* font size / weight  */
+/* ------------------- */
+
+.font-size-zero {
+    font-size: 0;
+}
+
+.font-size-10 {
+    font-size: 10px;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-13 {
+    font-size: 13px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-28 {
+    font-size: 28px;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+</style>
+
+    <!--[if (gte mso 9)|(IE)]>
+    <style type="text/css">
+        table {border-collapse: collapse;}
+    </style>
+    <![endif]-->
+
+</head>
+
+<body>
+    <center class="wrapper">
+        <div class="webkit">
+
+            <!-- This is a conditional table for Outlook that is hidden to all other clients. We need these because weâ€™re going to be using the max-width property which Outlook doesnâ€™t support. Therefore we need to create special Outlook-only tables with explicit pixel widths to contain everything in Outlook. -->
+
+            <!--[if (gte mso 9)|(IE)]>
+            <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+            <td>
+            <![endif]-->
+
+            <!-- OUTER TABLE -->
+            <table class="outer" align="center">
+
+                <!-- ============================================================================= -->
+                <!-- PREHEADER                                                                     -->
+                <!-- ============================================================================= -->
+
+                <tr>
+                    <td class="one-column">
+                        <table width="100%">
+
+                            <!-- spacer row -->
+                            <tr><td class="full-width" width="100%" height="15"></td></tr>
+
+                            <!-- view in web link -->
+                            <tr>
+                                <td id="pre-header" class="full-width centered text-small" width="100%">
+                                     Can't see the images? <a name="view_in_browser" class="hlite" href="#SPCLICKTOVIEW" style="text-decoration: none;" xt="SPCLICKTOVIEW" target="_blank">Click here.</a>
+                                </td>
+                            </tr>
+
+                            <!-- spacer row -->
+                            <tr><td class="full-width" width="100%" height="15"></td></tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- ////////////////////////////////////////////////// -->
+                <!--               BEGIN CONTENT                        -->
+                <!-- ////////////////////////////////////////////////// -->
+
+
+                <!-- ============================================================================= -->
+                <!-- FULL-WIDTH BANNER MODULE                                                      -->
+                <!-- ============================================================================= -->
+                <!-- Important: Images must always appear at their physical pixel size! Also, don't bother adding any height/width html attributes. This will be done in the css and injected with the inliner tool. -->
+                <tr>
+                    <td class="full-width-image">
+                        <!-- IMPORTANT: Image must not be wider than 600px! -->
+                        <img src="http://placehold.it/600x300/aaaaaa/ffffff" alt="" />
+                    </td>
+                </tr>
+
+                <!-- ============================================================================= -->
+                <!-- SINGLE COLUMN LAYOUT MODULE                                                   -->
+                <!-- ============================================================================= -->
+                <tr>
+                    <td class="module one-column">
+                        <table width="100%">
+                            <tr>
+                                <td class="inner contents">
+
+                                    <!-- begin single col content -->
+                                    <table>
+
+                                        <!-- spacer row -->
+                                        <tr><td class="full-width" width="100%" height="15"></td></tr>
+
+                                        <tr>
+                                            <td>
+                                                <p class="text-h1 margin-bottom-10">Single Column Layout Module</p>
+                                                <p class="text-regular">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut erat.</p>
+                                            </td>
+                                        </tr>
+
+                                        <!-- spacer row -->
+                                        <tr><td class="full-width" width="100%" height="15"></td></tr>
+
+                                        <!-- button -->
+                                        <tr>
+                                            <td>
+                                               <table height="30" align="left" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button">
+                                                  <tbody>
+                                                     <tr>
+                                                        <td width="auto" align="center" valign="middle" height="30" class="button-wrap">
+
+                                                           <span class="button">
+                                                              <a href="#" title="" target="_blank">READ MORE</a>
+                                                           </span>
+                                                        </td>
+                                                     </tr>
+                                                  </tbody>
+                                               </table>
+                                            </td>
+                                        </tr>
+                                        <!-- end of button -->
+
+                                    </table>
+                                    <!-- end single col content -->
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                <!-- ============================================================================= -->
+                <!-- SIDEBAR LAYOUT MODULE (icon on left / main content on right) -->
+                <!-- ============================================================================= -->
+
+                <tr>
+                    <td class="module left-sidebar">
+
+                    <!-- Following is a conditional table for Outlook with three columns.
+                    Without them, Outlook will not let our two floating tables sit neatly side-by-side. As Outlook doesnâ€™t support max-width either, these columns help restrict each column to the correct size... -->
+
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    <table width="100%">
+                    <tr>
+                    <![endif]-->
+
+                        <!-- ============================= -->
+                        <!-- BEGIN (LEFT) SIDEBAR (220 px) -->
+                        <!-- ============================= -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="220">
+                        <![endif]-->
+
+                        <!-- Note: These tables are super-simple with nothing nested inside, so to save on markup Iâ€™m going to set the tables themselves to 'display: inline-block' (i.e. 'column' class) rather than wrapping them in a div. This is only practical when you arenâ€™t going to be nesting any more elements inside. If you will be doing lots of nesting, wrap this table in a div, and put the '.column .right (or .left)' class on that. -->
+
+                        <div class="column left">
+                            <table>
+                                <tr>
+                                    <td class="inner contents">
+
+                                        <!-- begin sidebar content -->
+                                        <!-- IMPORTANT: Image must not be wider than 180px! -->
+                                        <img src="http://placehold.it/180x180/aaaaaa/ffffff" width="180" height="180" alt="" />
+                                        <!-- end sidebar content -->
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- ===================== -->
+                        <!-- END SIDEBAR           -->
+                        <!-- ===================== -->
+
+                        <!-- =========================== -->
+                        <!-- BEGIN (RIGHT) MAIN (380 px) -->
+                        <!-- =========================== -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="380">
+                        <![endif]-->
+
+                        <!-- Note: These tables are super-simple with nothing nested inside, so to save on markup Iâ€™m going to set the tables themselves to 'display: inline-block' (i.e. 'column' class) rather than wrapping them in a div. This is only practical when you arenâ€™t going to be nesting any more elements inside. If you will be doing lots of nesting, wrap this table in a div, and put the '.column .right (or .left)'' class on that. -->
+
+                        <div class="column right">
+                            <table>
+                                <tr>
+                                    <td class="inner contents">
+
+                                        <!-- begin main col content -->
+                                        <table>
+
+                                            <!-- title -->
+                                            <tr>
+                                                <td class="text-h1">
+                                                   Sidebar Layout Module
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- content -->
+                                            <tr>
+                                                <td class="text-regular">
+                                                   Lorem Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua consectetur adipisicing elit.
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- button -->
+                                            <tr>
+                                                <td>
+                                                   <table height="30" align="left" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="auto" align="center" valign="middle" height="30" class="button-wrap">
+
+                                                               <span class="button">
+                                                                  <a href="#" title="" target="_blank">READ MORE</a>
+                                                               </span>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                            </tr>
+                                            <!-- end of button -->
+
+                                        </table>
+                                        <!-- end main col content -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- =========================== -->
+                        <!-- END MAIN                    -->
+                        <!-- =========================== -->
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                    </td>
+                </tr>
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                <!-- ============================================================================= -->
+                <!-- R E V E R S E D  SIDEBAR LAYOUT MODULE (icon on right / main content on left) -->
+                <!-- ============================================================================= -->
+
+                <tr>
+                    <!-- NOTE the 'dir='rtl' attribute! This is needed for this layout! -->
+                    <td class="module right-sidebar" dir="rtl">
+
+                    <!-- Following is a conditional table for Outlook with columns.
+                    Without them, Outlook will not let our two floating tables sit neatly side-by-side. As Outlook doesnâ€™t support max-width either, these columns help restrict each column to the correct size... -->
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    <table width="100%" dir="rtl">
+                    <tr>
+                    <![endif]-->
+
+                        <!-- ============================= -->
+                        <!-- BEGIN (LEFT) SIDEBAR (220 px) -->
+                        <!-- ============================= -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="220">
+                        <![endif]-->
+
+                        <!-- Note: These tables are super-simple with nothing nested inside, so to save on markup Iâ€™m going to set the tables themselves to 'display: inline-block' (i.e. 'column' class) rather than wrapping them in a div. This is only practical when you arenâ€™t going to be nesting any more elements inside. If you will be doing lots of nesting, wrap this table in a div, and put the '.column .right (or .left)' class on that. -->
+
+                        <!-- NOTE the 'dir='ltr' attribute! This is needed for this layout! -->
+                        <div class="column left" dir="ltr">
+                            <table>
+                                <tr>
+                                    <td class="inner contents">
+
+                                        <!-- begin sidebar content -->
+                                        <!-- IMPORTANT: Image must not be wider than 600px! -->
+                                        <img src="http://placehold.it/180x180/aaaaaa/ffffff" width="180" height="180" alt="" />
+                                        <!-- end sidebar content -->
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- ===================== -->
+                        <!-- END SIDEBAR           -->
+                        <!-- ===================== -->
+
+                        <!-- =========================== -->
+                        <!-- BEGIN (RIGHT) MAIN (380 px) -->
+                        <!-- =========================== -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="380">
+                        <![endif]-->
+
+                        <!-- Note: These tables are super-simple with nothing nested inside, so to save on markup Iâ€™m going to set the tables themselves to 'display: inline-block' (i.e. 'column' class) rather than wrapping them in a div. This is only practical when you arenâ€™t going to be nesting any more elements inside. If you will be doing lots of nesting, wrap this table in a div, and put the '.column .right (or .left)'' class on that. -->
+
+                        <!-- NOTE the 'dir='ltr' attribute! This is needed for this layout! -->
+                        <div class="column right" dir="ltr">
+                            <table>
+                                <tr>
+                                    <td class="inner contents text-regular">
+
+                                        <!-- begin main col content -->
+                                        <table>
+
+                                            <!-- title -->
+                                            <tr>
+                                                <td class="text-h1">
+                                                   Reversed Sidebar Layout Module
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- content -->
+                                            <tr>
+                                                <td class="text-regular">
+                                                   Lorem Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua consectetur adipisicing elit.
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- button -->
+                                            <tr>
+                                                <td>
+                                                   <table height="30" align="left" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="auto" align="center" valign="middle" height="30" class="button-wrap">
+
+                                                               <span class="button">
+                                                                  <a href="#" title="" target="_blank">READ MORE</a>
+                                                               </span>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                            </tr>
+                                            <!-- end of button -->
+
+                                        </table>
+                                        <!-- end main col content -->
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- =========================== -->
+                        <!-- END MAIN                    -->
+                        <!-- =========================== -->
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                    </td>
+                </tr>
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                <!-- ============================================================================= -->
+                <!-- 2 COLUMN LAYOUT MODULE                                            -->
+                <!-- ============================================================================= -->
+                <tr>
+                    <td class="module two-column">
+
+                    <!-- Following is a conditional table for Outlook with two 50% wide columns.
+                    Without them, Outlook will not let our two floating tables sit neatly side-by-side. As Outlook doesnâ€™t support max-width either, these columns help restrict each column to the correct size... -->
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    <table width="100%">
+                    <tr>
+                    <![endif]-->
+
+                        <!-- ================= -->
+                        <!-- BEGIN LEFT COLUMN -->
+                        <!-- ================= -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="50%" valign="top">
+                        <![endif]-->
+                        <div class="column">
+                            <table width="100%">
+                                <tr>
+                                    <td class="inner">
+
+                                        <!-- begin left col content -->
+                                        <table class="contents">
+
+                                            <!-- image -->
+                                            <tr>
+                                                <td>
+                                                    <!-- IMPORTANT: Image must not be wider than 260px! -->
+                                                    <img src="http://placehold.it/260x160/aaaaaa/ffffff" alt="" />
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- title -->
+                                            <tr>
+                                                <td class="text-h1">
+                                                   Left column
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- content -->
+                                            <tr>
+                                                <td class="text-regular">
+                                                   Lorem Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua consectetur adipisicing elit.
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- button -->
+                                            <tr>
+                                                <td>
+                                                   <table height="30" align="left" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="auto" align="center" valign="middle" height="30" class="button-wrap">
+
+                                                               <span class="button">
+                                                                  <a href="#" title="" target="_blank">READ MORE</a>
+                                                               </span>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                            </tr>
+                                            <!-- end of button -->
+
+                                        </table>
+                                        <!-- end left col content -->
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- =============== -->
+                        <!-- END LEFT COLUMN -->
+                        <!-- =============== -->
+
+
+                        <!-- ================= -->
+                        <!-- BEGIN RIGHT COLUMN -->
+                        <!-- ================= -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="50%" valign="top">
+                        <![endif]-->
+                        <div class="column">
+                            <table width="100%">
+                                <tr>
+                                    <td class="inner">
+
+                                        <!-- begin right col content -->
+                                        <table class="contents">
+
+                                            <!-- image -->
+                                            <tr>
+                                                <td>
+                                                    <!-- IMPORTANT: Image must not be wider than 260px! -->
+                                                    <img src="http://placehold.it/260x160/aaaaaa/ffffff" alt="" />
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- title -->
+                                            <tr>
+                                                <td class="text-h1">
+                                                   Right column
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- content -->
+                                            <tr>
+                                                <td class="text-regular">
+                                                   Lorem Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua consectetur adipisicing elit.
+                                                </td>
+                                            </tr>
+
+                                            <!-- spacing -->
+                                            <tr><td width="100%" height="20" ></td></tr>
+
+                                            <!-- button -->
+                                            <tr>
+                                                <td>
+                                                   <table height="30" align="left" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="auto" align="center" valign="middle" height="30" class="button-wrap">
+
+                                                               <span class="button">
+                                                                  <a href="#" title="" target="_blank">READ MORE</a>
+                                                               </span>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                            </tr>
+                                            <!-- end of button -->
+
+                                        </table>
+                                        <!-- end left col content -->
+
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- =============== -->
+                        <!-- END RIGHT COLUMN -->
+                        <!-- =============== -->
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                    </td><!-- / td.two-column -->
+                </tr>
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                <!-- ============================================================================= -->
+                <!-- 3 COLUMN LAYOUT MODULE                                            -->
+                <!-- ============================================================================= -->
+                <tr>
+                    <td class="module three-column">
+
+                    <!-- Following is a conditional table for Outlook with three columns.
+                    Without them, Outlook will not let our two floating tables sit neatly side-by-side. As Outlook doesnâ€™t support max-width either, these columns help restrict each column to the correct size... -->
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    <table width="100%">
+                    <tr>
+                    <![endif]-->
+
+                        <!-- ================ -->
+                        <!-- BEGIN 1ST COLUMN -->
+                        <!-- ================ -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="200" valign="top">
+                        <![endif]-->
+                        <table class="column">
+                            <tr>
+                                <td class="inner">
+
+                                    <!-- begin 1st column content -->
+                                    <table class="contents">
+                                        <tr>
+                                            <td>
+                                                <!-- IMPORTANT: Image must not be wider than 160px! -->
+                                                <img src="http://placehold.it/160x90/aaaaaa/ffffff" alt="" />
+                                            </td>
+                                        </tr>
+
+                                        <!-- spacer row -->
+                                        <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                                        <tr>
+                                            <td class="text-regular">
+                                                This is the first column of a three-column layout module.
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- end 1st column content -->
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- ================ -->
+                        <!-- END 1ST COLUMN   -->
+                        <!-- ================ -->
+
+
+                        <!-- ================ -->
+                        <!-- BEGIN 2ND COLUMN -->
+                        <!-- ================ -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="200" valign="top">
+                        <![endif]-->
+                        <table class="column">
+                            <tr>
+                                <td class="inner">
+
+                                    <!-- begin 2nd column content -->
+                                    <table class="contents">
+                                        <tr>
+                                            <td>
+                                                <!-- IMPORTANT: Image must not be wider than 160px! -->
+                                                <img src="http://placehold.it/160x90/aaaaaa/ffffff" alt="" />
+                                            </td>
+                                        </tr>
+
+                                        <!-- spacer row -->
+                                        <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                                        <tr>
+                                            <td class="text-regular">
+                                                This is the second column of a three-column layout module.
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- end 2nd column content -->
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- ================ -->
+                        <!-- END 2ND COLUMN   -->
+                        <!-- ================ -->
+
+
+                        <!-- ================ -->
+                        <!-- BEGIN 3RD COLUMN -->
+                        <!-- ================ -->
+                        <!--[if (gte mso 9)|(IE)]>
+                        <td width="200" valign="top">
+                        <![endif]-->
+                        <table class="column">
+                            <tr>
+                                <td class="inner">
+
+                                    <!-- begin 3rd column content -->
+                                    <table class="contents">
+                                        <tr>
+                                            <td>
+                                                <!-- IMPORTANT: Image must not be wider than 160px! -->
+                                                <img src="http://placehold.it/160x90/aaaaaa/ffffff" alt="" />
+                                            </td>
+                                        </tr>
+
+                                        <!-- spacer row -->
+                                        <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                                        <tr>
+                                            <td class="text-regular">
+                                                This is the third column of a three-column layout module.
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- end 3rd column content -->
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        <![endif]-->
+                        <!-- ================ -->
+                        <!-- END 3RD COLUMN   -->
+                        <!-- ================ -->
+
+
+                    <!--[if (gte mso 9)|(IE)]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                    </td><!-- / td.three-column -->
+                </tr>
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+
+               <!-- ============================================================================= -->
+                <!-- Footer                                                           -->
+                <!-- ============================================================================= -->
+                <tr>
+                    <td class="one-column">
+                        <table width="100%">
+
+                            <!-- spacing -->
+                            <tr><td width="100%" height="15"></td></tr>
+
+                            <!-- footer logo -->
+                            <tr>
+                                <td align="center">
+                                    <a style="display:block; border:none; outline:none; text-decoration:none;" href="#" target="_blank" name="footer_logo_link">
+                                        <img width="130" height="20" border="0" alt="" style="display:block; border:none; outline:none; text-decoration:none; text-decoration: none; color: #75AADB" name="footer_logo_image" src="https://placeholdit.imgix.net/~text?txtsize=15&bg=aaaaaa&txtclr=ffffff&txt=LOGO&w=130&h=20&txtpad=1" alt="" />
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <!-- spacing -->
+                            <tr><td width="100%" height="10"></td></tr>
+
+                            <!-- text -->
+                            <tr>
+                                <td align="center" style="font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #999999; text-align:center;line-height: 20px;">
+                                   123 Main St.<br>
+                                   Everwhere, MN 12345<br>
+                                   (333) 333-3333
+                                </td>
+                            </tr>
+
+                            <!-- spacing -->
+                            <tr><td width="100%" height="15"></td></tr>
+
+                            <!-- unsubscribe link -->
+                            <tr>
+                                <td valign="middle" align="center" style="font-family: Helvetica, arial, sans-serif; font-size: 10px;color: #999999">If you don't want to receive updates, please <a href="#SPONECLICKOPTOUT" name="footer_unsubscribe_link" id="footer_unsubscribe" xt="SPONECLICKOPTOUT" style="text-decoration: none;" target="_blank">unsubscribe</a>.</td>
+                            </tr>
+
+                            <!-- spacing -->
+                            <tr><td width="100%" height="30"></td></tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+            <!-- ////////////////////////////////////////////////// -->
+            <!--               END CONTENT                          -->
+            <!-- ////////////////////////////////////////////////// -->
+
+            </table>
+
+
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+
+        </div>
+    </center>
+</body>

@@ -1,0 +1,620 @@
+<html><head></head><body>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--[if !mso]><!-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid Hybrid Template, Modified</title>
+    <style>
+
+/* ======================================== */
+/*   GLOBAL STYLES
+/* ======================================== */
+
+body {
+    Margin: 0;
+    padding: 0;
+
+    /* This is to avoid any situations where the content doesnâ€™t take up
+    the full width of the viewport on mobile: */
+    min-width: 100%;
+
+    /* It's always a good idea to set your background colour, even if
+    itâ€™s pure white, to avoid background colour glitches in Outlook
+    or Lotus Notes: */
+    background-color: #e0e8eb;
+}
+/*  To take the place of the cellpadding and cellspacing HTML attributes: */
+table {
+    border-spacing: 0;
+    font-family: sans-serif;
+    color: #333333;
+}
+td {
+    padding: 0;
+}
+img {
+    border: 0;
+}
+.wrapper {
+    width: 100%;
+
+    /* to ensure our centered content will actually be centered in Yahoo mail: */
+    table-layout: fixed;
+
+    /* to stop text resizing in a weird way on Windows Phones and iOS: */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+
+}
+/* to contain everything in Apple Mail 6 (and below) and Outlook 2011: */
+.webkit {
+    max-width: 600px;
+}
+
+/* In conjunction with our two meta tags in the head, this will ensure everything
+looks right on Windows Phones: */
+@-ms-viewport {
+    width: device-width;
+}
+
+
+
+/* =================================================================== */
+/*   OUTER TABLE
+/*   The key outer building block (for every client except Outlook)
+/* =================================================================== */
+
+.outer {
+    /* To center the outer table in Yahoo in Chrome. (Though this use of margin is for Yahooâ€™s sake Margin is capitalized so that Outlook.com wonâ€™t strip it out â€“ a neat little hack thanks to Wiktor- https://www.campaignmonitor.com/blog/post/3921/outlook.com-drops-margin-and-float-support-entirely */
+    Margin: 0 auto;
+    Padding-top: 10;
+    Padding-bottom: 10;
+    Padding-right: 15;
+    Padding-left: 15;
+
+    /* For a quick and easy buffer on mobile, without having to fiddle around with padding or media queries, change the width of your table from 100% to 95%. */
+    width: 100%;
+    /*width: 95%;*/
+
+    /* We want this outer table to be 100% wide on small screens but on larger
+    screens we only want it to be a maximum of 600px wide. */
+    max-width: 600px;
+}
+
+/* =================================================================== */
+/*   FULL WIDTH IMAGES
+/* =================================================================== */
+
+/* !!! IMPORTANT NOTE ABOUT IMAGES !!! */
+/* We must insert images at the correct physical pixel size, unless itâ€™s an icon smaller than 100px wide.
+
+This is because Outlook 2007, 2010 and 2013 will not scale images up or down from their physical dimensions unless you set an explicit pixel width on the image. If you were to place a 1200px wide image in a 600px wide cell and set its width to 100%, Outlook would display that image at 1200px wide. Therefore if you have a 600px wide cell (on desktop), you need to use a 600px wide image. */
+
+.full-width-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* =================================================================== */
+/*   MORE LAYOUT STYLES
+/* =================================================================== */
+
+.module {
+    background: #ffffff;
+/*    padding-top: 20px;
+    padding-bottom: 20px;*/
+}
+
+.full-width {
+    width: 100%;
+}
+
+.centered {
+    text-align: center;
+}
+
+.inner {
+    padding: 0px;
+}
+
+.margin-bottom-10 {
+    Margin-bottom: 10px;
+}
+
+.margin-top-10 {
+    Margin-top: 10px;
+}
+
+
+/* =================================================================== */
+/*   TEXT STYLES
+/* =================================================================== */
+
+/* CSS for <p> elements can actually be managed them easily because of the capital-M Margin hack mentioned earlier */
+p {
+    Margin: 0;
+}
+a {
+    color: #0099CC;
+    text-decoration: underline;
+}
+
+/* <p class="h1"> is used instead of <h1> because Outlook.com has some h1, h2 and h3 styles that always override your styling. */
+
+.text-h1 {
+    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+    font-size: 24;
+    color: #1a3b88;
+    line-height: 26px;
+    font-weight: 700;
+}
+
+.text-h2 {
+    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+    font-size: 16px;
+    color: #1e3d86;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.text-regular {
+    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    color: #444444;
+    line-height: 16px;
+    align: center;
+}
+
+.text-small {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 10px;
+    color: #999999;
+}
+
+/* =================================================================== */
+/*   BUTTON
+/* =================================================================== */
+
+.button-wrap {
+    background-color:#ff7f00;
+    border-top-left-radius:3px;
+    border-bottom-left-radius:3px;
+    border-top-right-radius:3px;
+    border-bottom-right-radius:3px;
+    background-clip: padding-box;
+    font-size:11px;
+    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+    text-align:center;
+    color:#ffffff;
+    font-weight: 100;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.button {
+    color: #ffffff;
+}
+
+.button a {
+    color: #ffffff;
+    text-align:center;
+    text-decoration: none;
+}
+
+/* =================================================================== */
+/*   SINGLE-COLUMN LAYOUT
+/* =================================================================== */
+
+.one-column .contents {
+    text-align: center;
+}
+
+
+/* =================================================================== */
+/*   2-COLUMN LAYOUT
+/* =================================================================== */
+
+/* The way we are going to get two columns to float side by side on desktop, but stack in the centre on mobile, is by using a combination of 'text-align: center' and 'display: inline-block.'
+
+/* All inline and inline-block elements obey the text-align property. Therefore, if we wrap our tables in a div that is set to inline-block, we can very easily set their alignment when they stack by setting the text-align property on their container. You can choose from left, center or right text alignment, and your inline-block divs will obey. */
+
+/* You can indeed simply set the table itself to be 'display: inline-block,'' but only if you arenâ€™t going to be nesting any more tables inside. Things can start behaving weirdly if you nest tables inside inline-block tables, so if you need to nest, *** always ensure the inline-block container is a div. *** */
+
+.contents {
+    width: 100%;
+}
+
+/* =================================================================== */
+/*   3-COLUMN LAYOUT
+/* =================================================================== */
+
+
+/* =================================================================== */
+/*  MEDIA QUERIES FOR CLIENTS THAT SUPPORT THEM
+/*  (Progressive Enhancement)
+/* =================================================================== */
+
+
+/* Firstly, weâ€™ll make all of our columns appear at 100% the width of the viewport for anything up to 400px. Weâ€™ll also limit our three-column images to 50% wide so that they donâ€™t blow up too large. All we have to do is reset the max-width of these columns because, as youâ€™ll recall, they all already have a width of 100% and itâ€™s just the max-width that is restricting them. */
+
+@media screen and (max-width: 400px) {
+    .two-column .column,
+    .three-column .column {
+        max-width: 100% !important;
+    }
+    .three-column img {
+        max-width: 50% !important;
+    }
+}
+
+/* Then, between 401px and 600px wide, weâ€™ll add the following to make the two- and three-column layouts appear as they would on desktop, but shrunk down to fit. */
+
+@media screen and (min-width: 401px) and (max-width: 620px) {
+    .three-column .column {
+        max-width: 33% !important;
+    }
+    .two-column .column {
+        max-width: 50% !important;
+    }
+}
+
+
+/* CSS Utility Classes */
+
+.no-hover-state:hover {
+    cursor: default;
+}
+
+/* ----------------- */
+/* block or inline   */
+/* ----------------- */
+
+.display-block {
+    display: block;
+}
+
+.display-inline {
+    display: inline;
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+
+/* ----------------- */
+/* vertical alignment */
+/* ----------------- */
+
+.vertical-align-top {
+    vertical-align: top
+}
+
+.vertical-align-middle {
+    vertical-align: middle
+}
+
+.vertical-align-bottom {
+    vertical-align: bottom
+}
+
+
+/* ----------------- */
+/* text alignment    */
+/* ----------------- */
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ----------------- */
+/* padding           */
+/* ----------------- */
+
+.padding-none {
+    padding: 0px 0px 0px 0px;
+}
+
+.padding-top-2 {
+    padding-top: 2px;
+}
+
+.padding-top-5 {
+    padding-top: 5px;
+}
+
+.padding-top-10 {
+    padding-top: 10px;
+}
+
+.padding-top-15 {
+    padding-top: 15px;
+}
+
+.padding-top-30 {
+    padding-top: 30px;
+}
+
+.padding-bottom-2 {
+    padding-bottom: 2px;
+}
+
+.padding-bottom-5 {
+    padding-bottom: 5px;
+}
+
+.padding-bottom-10 {
+    padding-bottom: 10px;
+}
+
+.padding-bottom-15 {
+    padding-bottom: 15px;
+}
+
+.padding-bottom-30 {
+    padding-bottom: 30px;
+}
+
+.padding-right-60{
+    padding-right: 60px;
+}
+
+.padding-left-60{
+    padding-left: 60px;
+}
+
+.padding-right-80{
+    padding-right: 80px;
+}
+
+.padding-left-80{
+    padding-left: 80px;
+}
+
+/* ----------------- */
+/* margin            */
+/* ----------------- */
+
+.margin-none {
+    margin: 0px 0px 0px 0px;
+}
+
+.margin-top-2 {
+    margin-top: 2px;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+
+/* ------------------- */
+/* font size / weight  */
+/* ------------------- */
+
+.font-size-zero {
+    font-size: 0;
+}
+
+.font-size-10 {
+    font-size: 10px;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-13 {
+    font-size: 13px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-28 {
+    font-size: 28px;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+</style>
+
+    <!--[if (gte mso 9)|(IE)]>
+    <style type="text/css">
+        table {border-collapse: collapse;}
+    </style>
+    <![endif]-->
+
+
+
+    <center class="wrapper">
+        <div class="webkit">
+
+            <!-- This is a conditional table for Outlook that is hidden to all other clients. We need these because weâ€™re going to be using the max-width property which Outlook doesnâ€™t support. Therefore we need to create special Outlook-only tables with explicit pixel widths to contain everything in Outlook. -->
+
+            <!--[if (gte mso 9)|(IE)]>
+            <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+            <td>
+            <![endif]-->
+
+            <!-- OUTER TABLE -->
+            <table class="outer" align="center">
+
+                <!-- ============================================================================= -->
+                <!-- PREHEADER                                                                     -->
+                <!-- ============================================================================= -->
+
+                <tbody><tr>
+                    <td class="one-column">
+                        <table width="100%">
+
+                            <!-- spacer row -->
+                            <!--<tbody><tr><td class="full-width" width="100%" height="15"></td></tr>-->
+
+                            <!-- view in web link -->
+                            <tr>
+                                <td id="logo" align="left" width="85">
+                                  <img src="logo.png" >
+                                </td>
+                                <td id="pre-header" class="centered text-small text-right">Can't see the images?<a name="view_in_browser" class="hlite" href="#SPCLICKTOVIEW" style="text-decoration: none;" xt="SPCLICKTOVIEW" target="_blank">Click here.</a>
+                                </td>
+                            </tr>
+
+                            <!-- spacer row -->
+
+                        </tbody>
+                      </table>
+                    </td>
+                </tr>
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+                <!-- ////////////////////////////////////////////////// -->
+                <!--               BEGIN CONTENT                        -->
+                <!-- ////////////////////////////////////////////////// -->
+
+
+                <!-- ============================================================================= -->
+                <!-- FULL-WIDTH BANNER MODULE                                                      -->
+                <!-- ============================================================================= -->
+                <!-- Important: Images must always appear at their physical pixel size! Also, don't bother adding any height/width html attributes. This will be done in the css and injected with the inliner tool. -->
+                <tr>
+                    <td class="full-width-image">
+                        <!-- IMPORTANT: Image must not be wider than 600px! -->
+                        <img src="banner.png" alt="">
+                    </td>
+                </tr>
+
+                <!-- ============================================================================= -->
+                <!-- SINGLE COLUMN LAYOUT MODULE                                                   -->
+                <!-- ============================================================================= -->
+                <tr>
+                    <td class="module one-column">
+
+                        <table width="100%">
+                            <tbody>
+                              <tr>
+                                <td class="inner contents padding-right-60 padding-left-60">
+                                  <p class="text-h1 margin-bottom-10" align="center">Introducing the all-new, completeley redesigned CarTrade.</p>
+                                  <p class="text-regular" align="center">Your GO-TO for more leads and engagement.</p>
+                                  <p class="text-regular" align="center">Your GO-TO for clear-cut sales attribution.</p>
+                                  <p class="text-regular" align="center">Your GO-TO for accelerating shoppers into signatures.</p>
+                                  <p class="text-regular margin-top-15" align="center" >Meet the all-new Autotrader</p>
+                                </td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr><td class="full-width" width="100%" height="22"></td></tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td class="inner contents padding-right-80 padding-left-80">
+                                    <p class="text-h2 margin-bottom-10" align="center">Learn to revolutionize yout Certified Pre-Owned marketing at the NIADA Convention.</p>
+                                    <p class="text-regular" align="center justify">What strategy should you use to mrket a CPO program through digital media? How should you revise or initiale your CPO playbook to ensure strong lead generation/sales and take advantage of these trends? Learn all that and more at our panel discussion at the NIADA Convention.</p>
+                                    <p class="text-regular margin-top-5" align="center"><b>WHAT:</b> "Reaching the CPO Customer Trough Digital Marketing"</p>
+                                    <p class="text-regular margin-top-5" align="center"><b>PANELIST:</b> Marcus Valer, Cox Automotive, Senior Director/Product</p>
+                                    <p class="text-regular margin-top-5" align="center" ><b>WHEN:</b> Wed., June 20, 4:15-5pm </p>
+                                </td>
+                            </tr></tbody>
+                            <tbody>
+                              <tr>
+                                <td class="inner contents padding-top-30 padding-bottom-30">
+                                  <table height="35" width="250" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button">
+                                    <tbody>
+                                      <tr>
+                                        <td width="auto" align="center" valign="middle" height="30" class="button-wrap">
+                                          <span class="button">
+                                            <a href="#" title="" target="_blank">ADD A CONVEINMENT CALENDAR REMINDER</a>
+                                          </span>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+               <!-- ============================================================================= -->
+                <!-- Footer                                                           -->
+                <!-- ============================================================================= -->
+                <tr>
+                  <td class="module one-column">
+                    <table align="center">
+                      <tbody><tr><td class="full-width" width="100%" height="15"></td></tr>
+                        <tr>
+                          <td id="logo" align="left">
+                            <img src="best-car-logo-vector.png">
+                          </td>
+                        </tr>
+                        <tr><td class="full-width" width="100%" height="15"></td></tr>
+                        </tbody>
+                      </table>
+                    </td>
+                </tr>
+                <!-- spacer row -->
+                <tr><td class="full-width" width="100%" height="10"></td></tr>
+
+            <!-- ////////////////////////////////////////////////// -->
+            <!--               END CONTENT                          -->
+            <!-- ////////////////////////////////////////////////// -->
+
+            </tbody></table>
+
+
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+
+        </div>
+    </center>
+
+
+</body></html>
